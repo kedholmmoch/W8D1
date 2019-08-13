@@ -1,0 +1,15 @@
+<h1> Create Sub</h1>
+<br>
+<br>
+<form action="<%=subs_url%>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="title">Title 
+    <input type="text" name="sub[title]" id="title">
+  </label>
+  <br>
+  <label for="description">Description 
+    <input type="text" name="sub[description]" id="description">
+  </label>
+  <br>
+  <input type="submit" value="Create Sub">
+</form>

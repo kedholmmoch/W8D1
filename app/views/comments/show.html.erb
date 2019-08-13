@@ -1,0 +1,17 @@
+<h1>Comments</h1>
+<h2>Post: <a href="<%=post_url(@comment.post)%>"><%= @comment.post.title %></a></h2>
+
+<% @children.each do |comment| %>
+  <%= comment.content %> <br>
+<% end %>
+<br>
+
+<form action="<%= comments_url %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="comment[post_id]" value="<%= @comment.post_id %>">
+  <input type="hidden" name="comment[comment_id]" value="<%= @comment.id %>">
+  <label> Comment: 
+    <input type="text" name="comment[content]" value="">
+  </label>
+  <input type="submit" value="Create Comment">
+</form>

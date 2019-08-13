@@ -1,0 +1,33 @@
+<h1>Title: <%= @post.title %></h1>
+<h2>Author: <%= @post.author.username%></h2>
+<h2>URL: <%= @post.url%></h2>
+<% if @post.content %>
+  <h2>Content: <%= @post.content%></h2> 
+<% end %>
+
+<ul>
+<% @post.subs.each do |sub|%>
+  <li><a href="<%= sub_url(sub) %>"><%= sub.title %></a></li>
+<% end %>
+</ul>
+
+<h3>Comments</h3>
+<>
+<% @post.comments.each do |comment| %>
+  
+  <%if comment.comment_id.nil? %>
+    <%= comment.content %> 
+    <a href="<%=comment_url(comment)%>">Go to comment page</a>
+  <%end%>
+  <br>
+<% end %>
+<br>
+<br>
+<form action="<%= comments_url %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="comment[post_id]" value="<%= @post.id %>">
+  <label> Comment: 
+    <input type="text" name="comment[content]" value="">
+  </label>
+  <input type="submit" value="Create Comment">
+</form>
